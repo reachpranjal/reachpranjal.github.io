@@ -1,4 +1,4 @@
-/**
+/*
 * PHP Email Form Validation - v2.0
 * Author: reachpranjal@2020
 */
