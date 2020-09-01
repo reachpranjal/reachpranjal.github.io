@@ -1,6 +1,6 @@
 <?php
   
-  $receiving_email_address = 'paulpranjal45@gmail.com';
+  $receiving_email_address = 'reachpranjal19@gmail.com';
 
   if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
     include( $php_email_form );
@@ -20,9 +20,9 @@
   
   $contact->smtp = array(
     'host' => 'smtp.gmail.com',
-    'username' => 'paulpranjal45@gmail.com',
-    'password' => 'Comp@nion1!',
-    'port' => '465'
+    'username' => 'reachpranjal19@gmail.com',
+    'password' => 'Companion1!',
+    'port' => '587'
   );
   
 
