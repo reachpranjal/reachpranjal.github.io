@@ -1,9 +1,6 @@
 <?php
 /**
- * PHP Email Form
- * Version: 2.0
- * Website: https://bootstrapmade.com/php-email-form/
- * Copyright: BootstrapMade.com
+ * Copyright: reachpranjal2020
  */
 
 if ( version_compare(PHP_VERSION, '5.5.0', '<') ) {
