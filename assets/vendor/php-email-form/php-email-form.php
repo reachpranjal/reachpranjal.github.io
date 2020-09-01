@@ -127,10 +127,10 @@ class PHP_Email_Form {
         $this->error .= 'SMTP password is empty!' . '<br>';
     
       if( !isset( $this->smtp['port'] ) )
-        $this->smtp['port'] = 587;
+        $this->smtp['port'] = 465;
       
       if( !isset( $this->smtp['encryption'] ) )
-        $this->smtp['encryption'] = 'tls';
+        $this->smtp['encryption'] = 'ssl';
 
       if( isset( $this->smtp['mailer'] ) ) {
         $this->mailer = $this->smtp['mailer'];
