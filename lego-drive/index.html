@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LeGo-Drive">
+  <meta name="keywords" content="ConceptFusion, 3D Mapping, SLAM, Open-set, Multimodal, Foundation models, CLIP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeGo-Drive</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J25EYTZDDH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-J25EYTZDDH');
+  </script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://reachpranjal.github.io/lego-drive">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Related Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://gradslam.github.io">
+            GradSLAM
+          </a>
+          <a class="navbar-item" href="https://mahis.life/clip-fields/">
+            CLIP-Fields
+          </a>
+          <a class="navbar-item" href="https://pengsongyou.github.io/openscene">
+            OpenScene
+          </a>
+          <a class="navbar-item" href="https://say-can.github.io/">
+            Say-Can
+          </a>
+        </div>
+      </div> -->
+    <!-- </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">LeGo-Drive: Language-enhanced Goal-oriented <br> Closed-Loop End-to-End Autonomous Driving</h1>
+          <!-- <h2 class="title is-6 publlication-title">Robotics: Science and Systems (RSS) 2023</h2> -->
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">
+              <a href="https://tinyurl.com/pranjalpaul">Pranjal Paul</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/anantagrg">Anant Garg</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://tusharc31.github.io/">Tushar Choudhary</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.in/citations?user=0zgDoIEAAAAJ&hl=en">Arun Kumar Singh</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en">K. Madhava Krishna</a><sup>1</sup></span>
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>IIIT Hyderabad,</span>
+            <span class="author-block"><sup>2</sup>University of Tartu</span>
+          </div>
+
+          <div class="is-size-7 publication-authors">
+            <span class="author-block"><sup>*</sup>Co-second authors</span>
+            <!-- <span class="author-block"><sup>&#8224;</sup>Work done prior to current affiliation</span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="assets/pdf/2023-ConceptFusion.pdf"
+                   class="external-link button is-normal ">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal ">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/eOYAq2cz1Pk"
+                   class="external-link button is-normal ">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>1-min Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/reachpranjal/lego-drive"
+                   class="external-link button is-normal ">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>GitHub</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal" disabled="true">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="text-align: justify;">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%"> -->
+        <img source src="./static/images/teaser-wide.png" />
+      <!-- </video> -->
+      <h2 class="subtitle has-text-centered">
+        <span class="coolname">LeGo-Drive</span> navigates to a language-based goal which is jointly optimized with trajectory parameters. 
+        The goal predicted for commands like <b><i>"Park near the bus stop on the front left"</i></b> can fall at a non-desirable location (<i>top-right:</i> <font color="#03c04a">Green</font>), which may lead to a collision-prone trajectory. 
+        <br/>
+        Since the trajectory is the only component that directly "interacts" with the environment, we propose making the perception aware of the trajectory parameters which improves the goal location to a navigable location (<i>bottom-right:</i> <font color="#FF0000">Red</font>).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing Vision-Language models (VLMs) estimate either long-term trajectory waypoints or a set of control actions as a reactive solution for closed-loop planning based on their rich scene comprehension. However, these estimations are coarse and are subjective to their "world understanding" which may generate sub-optimal decisions due to perception errors. 
+            In this paper, we introduce <i>LeGo-Drive</i>, which aims to address this issue by estimating a goal location based on the given language command as an intermediate representation in an end-to-end setting. The estimated goal might fall in a non-desirable region, like on top of a car for a parking-like command, leading to inadequate planning. Hence, we propose to train the architecture in an end-to-end manner, resulting in iterative refinement of both the goal and the trajectory collectively. We validate the effectiveness of our method through comprehensive experiments conducted in diverse simulated environments. We report significant improvements in standard autonomous driving metrics, with a goal reaching Success Rate of 81%. We further showcase the versatility of <i>LeGo-Drive</i> across different driving scenarios and linguistic inputs, underscoring its potential for practical deployment in autonomous vehicles and intelligent transportation systems.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3" align="center">The LeGo-Drive Architecture</h2>
+      <div style="text-align: center;">
+        <img src="./static/images/architect.png" width="1200"/>
+      </div>
+    </div>
+  </div>
+</section> 
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">End-to-End Approach</h2>
+        
+        <div class="content has-text-justified">
+          <p>
+            LeGo-Drive predicts a region-optimized desired location from the user-provided natural language input command together with the trajectory parameters while following the scene constraints. This is achieved by: first, predicting a language-based goal location within the predicted goal region segmentation. 
+            This is then, fed to the optimization-based downstream planner which estimates the optimization parameters of the trajectory. Further, both the modules are jointly trained by backpropagating the perception and planner loss in an end-to-end manner.
+          </p>
+          <div style="text-align: center;">
+            <img src="./static/images/pipeline.gif" width="1000"/>
+          </div>
+        </div>
+        <br/>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Case: Park-In</h2>
+          <div class="interpolation-image-wrapper-zero-shot">
+            <img src="./static/images/park-in-new-goal.gif" />
+          </div>
+          <p style="text-align: justify;">
+            For navigation command like <b><i>"Park behind the bike on the front right"</i></b>, the initial prediction of goal (in <font color="#03c04a">Green</font>) from the perception module falls at a non-navigable location, i.e. on the curb edge.
+            The model excels in improving the goal to a reachable location (in <font color="#FF0000">Red</font>) when the perception module is made "aware" of the downstream trajectory planner.
+          </p>
+        </div>
+      </div>
+      <!--/ Zero-shot pixel alignment -->
+
+      <!-- Long-tailed concepts -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Park-Out</h2>
+          <div class="interpolation-image-wrapper-zero-shot">
+            <img src="./static/images/park-out-new-goal.gif" />
+          </div>
+          <p style="text-align: justify;"">
+            The initial goal generated (in <font color="#03c04a">Green</font>) for input prompt <b><i>"Park out while keeping a safe distance from the parked bike,"</i></b>  might not ensure a safe trajectory, potentially leading to collisions in the initial motion.
+            However, the system is able to refine this goal (in <font color="#FF0000">Red</font>) with a differentiably optimized trajectory leading to that goal when collectively trained with the planner.
+          </p>
+        </div>
+      </div>
+      <!-- <div class="column">
+        <h2 class="title is-3">Park-Out</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <div class="interpolation-image-wrapper-fine-grained">
+              <img src="./static/images/park-out-new-goal.gif" />
+            </div>
+            <p>
+              Our approach to computing pixel-aligned features is adept at capturing long-tailed and fine-grained concepts. The plots to the right show the similarity scores between the embeddings of the cropped image regions corresponding to diet coke, lysol, and yogurt and their text embeddings, predicted by the base CLIP model used by LSeg and OpenSeg respectively. This implies that the base CLIP models know these concepts, yet, as can be seen on the tiled plots (center), LSeg and OpenSeg are not able to retrieve these concepts; they forget the concepts when finetuned. On the other hand, our zero-shot pixel-alignment approach does not suffer this drawback, and clearly delineates the corresponding pixels.
+            </p>
+          </div>
+
+        </div>
+      </div> -->
+    </div>
+    <!--/ Long-tailed concepts -->
+
+
+    <!-- <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">UnCoCo dataset</h2>
+          <div class="interpolation-image-wrapper-uncoco">
+            <img src="./static/images/uncoco.png" />
+          </div>
+          <p>
+            To evaluate long-tailed reasoning and multimodal reasoning abilities, since there is no existing dataset, we capture a set of 20 RGB-D sequences comprising 78 commonly found objects and annotate them with text, audio, click, and image queries. For each query, we also provide the corresponding ground truth 2D and 3D retrieval results. This image showcases sample tabletop scenes from UnCoCo (left) and the resulting 3D reconstructions and labels (right).
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2 class="title is-3">3D spatial reasoning</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <img src="./static/images/spatial-query.png" />
+            <p>
+              <i>What is the distance between the refrigerator from the television?</i>
+            </p>
+            <p>
+              A key benefit of lifting foundation features to 3D is the ability to reason about spatial attributes. We implement a set of generic spatial relationship comparators that can be leveraged for querying arbitrary objects. We employ a large language model to parse the queries to generate function calls that can directly be executed. E.g., the query above parses to <tt>howFar(refrigirator, television)</tt>.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+    <!--/ 3D spatial reasoning -->
+
+    <!-- Long-form text queries -->    
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Interpolating. -->
+        <h2 class="title is-4">Case: Compound Command</h2>
+        <div class="content has-text-justified">
+          <div style="float: left; margin-right: 20px;">
+            <img src="./static/images/compound.gif" />
+          </div>
+          <p>
+            The efficacy of the proposed approach can be best seen for intricate case where a long-term motion is involved. 
+            A compound command like <b><i>"Take a Right Turn at the intersection and Stop near the Food Stall"</i></b> requires fine goal and trajectory estimation consecutively. 
+            This can be carried out by breaking the input prompt into atomic commands, typically using LLM, and execute them in-order. The model is then queried based on the number of atmoic commands, here twice.
+            This further demonstrates the value of having an interepretable intermediate representation within the end-to-end model which helps in mitigating the extensive dependency of the planner module on perception, which could otherwise lead to impractical solutions stemming from perception inaccuracies.
+
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!--/ Long-form text queries -->
+
+    <!-- Click-query video -->    
+    <section class="hero is-light is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3" align="center">Integration with LVLM</h2>
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div class="content has-text-justified">
+                <div style="text-align: center;">
+                  <img src="./static/images/vqa.gif" width="700"/>
+                </div>
+                <p>
+                  For extended functionality of generating high-level driving instructions catered to the current scene, we employ GPT-4V and provide it with the front camera image and an engineered prompt where we explain the driving setting and available actions. 
+                  GPT-4V generates a suggested instruction command based on its rationale, which is then forwarded to our pipeline for trajectory planning and execution. 
+                  As illustrated, the vision-language model is able to determine the best course of action from a range of potential driving maneuvers. 
+                  It accurately identifies an obstruction ahead and recommends <i>"switching to the left lane"</i> to continue moving forward. 
+                  With this recommended action, our pipeline is able to predict a collision-free goal point and an optimized trajectory leading towards it.
+                </p>
+              </div>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--/ Click-query video -->
+
+  </div>
+</section>
+
+<!-- 
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Experiments on real robotic systems</h2>
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-3">Tabletop rearrangement</h3>
+          <div class="interpolation-image-wrapper-tabletop">
+            <img src="./static/images/rearrangement.png" />
+          </div>
+          <p>
+            The robot is provided with rearrangment goals involving novel objects. (Top row) push goldfish to the right of the yellow line, where goldfish refers to the brandname of the pack of Cheddar snack. (Bottom row) push baymax to the right of the yellow line, where baymax refers to the plush toy depicting the famous Disney character.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <h3 class="title is-3">Autonomous driving</h3>
+        <div class="columns is-centered">
+          <div class="column content">
+            <img src="./static/images/driving.png" />
+            <p>
+              (Left to right; top to bottom) Autonomous drive-by-wire platform deployed; pointcloud map of the environment with the response to the openset text-query ”football field” (shown in red); path found to the football field (shown in red); car successfully navigates to the destination autonomously. See our anonymized webpage for more results.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Integrating ConceptFusion with Large Language Models</h2>
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <video id="gpt-video-1" autoplay controls muted playsinline height="100%">
+            <source src="./static/videos/gpt video.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <video id="gpt-video-2" autoplay controls muted playsinline height="100%">
+            <source src="./static/videos/gpt video2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="section" id="concurrent work">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Concurrent work</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Given the pace of AI research these days, it is extremely challenging to keep up with all of the work around foundation models and open-set perception. We list below a few key approaches that we have come across after beginning work on ConceptFusion. If we may have inadvertently missed out on key concurrent work, please reach out to us over email (or better, open a pull request on <a href="https://github.com/concept-fusion/concept-fusion.github.io">our GitHub page</a>).
+          </p>
+          <p>
+            <a href="https://mahis.life/clip-fields/">CLIP-Fields</a> encodes features from language and vision-language models into a compact, scene-specific neural network trained to predict feature embeddings from 3D point coordinates; to enable open-set visual understanding tasks.
+          </p>
+          <p>
+            <a href="https://pengsongyou.github.io/openscene">OpenScene</a> demonstrates that features from pixel-aligned 2D vision-language models can be distilled to 3D, generalize to new scenes, and perform better than their 2D counterparts.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2211.16312">Deng et al.</a> demonstrate interesting ways of learning hierarchical scene abstractions by distilling features from 2D vision-language foundation models, and smart ways of interpreting captions from 2D captioning approaches.
+          </p>
+          <p>
+            <a href="https://makezur.github.io/FeatureRealisticFusion/">Feature-realistic neural fusion</a> demonstrates the integration of DINO features into a real-time neural mapping and positioning system.
+          </p>
+          <p>
+            <a href="https://semantic-abstraction.cs.columbia.edu">Semantic Abstraction</a> uses CLIP features to generate 3D features for reasoning over long-tailed categories, for scene completion and detecting occluded objects from language.
+          <p>
+            <a href="https://say-can.github.io/">Say-Can</a> demonstrates the applicability of large language models as task-planners, and leverage a set of low-level skills to execute these plans in the real world. Also related to this line of work are <a href="https://vlmaps.github.io/">VL-Maps</a>, <a href="https://nlmap-saycan.github.io/">NLMap-SayCan</a>, and <a href="https://cow.cs.columbia.edu/">CoWs</a>, which demonstrate the benefits of having a map queryable via language.
+          </p>
+          <p>
+            <a href="lerf.io">Language embedded radiance fields (LERF)</a> trains a NeRF that additionally encodes CLIP and DINO features for language-based concept retrieval.
+          </p>
+          <p>
+            <a href="https://vis-www.cs.umass.edu/3d-clr/">3D concept learning from multi-view images (3D-CLR)</a> introduces a dataset for 3D multi-view visual question answering, and proposes a concept learning framework that leverages pixel-aligned language embeddings from LSeg. They additionally train a set of neurosymbolic reasoning modules that loosely inspire our spatial query modules.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  $(function() {
+  var screenWidth = $(window).width();
+  if (screenWidth >= 800) {
+    $('#gpt-video-1').attr('autoplay', 'autoplay');
+  }
+  if (screenWidth >= 800) {
+    $('#gpt-video-2').attr('autoplay', 'autoplay');
+  }
+  if (screenWidth >= 800) {
+    $('#click-query-icl').attr('autoplay', 'autoplay');
+  }
+});
+</script>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX (To be Added)</h2>
+    <!-- <pre><code>@article{conceptfusion,
+  author    = {Jatavallabhula, {Krishna Murthy} and Kuwajerwala, Alihusein and Gu, Qiao and Omama, Mohd and Chen, Tao and Li, Shuang and Iyer, Ganesh and Saryazdi, Soroush and Keetha, Nikhil and Tewari, Ayush and Tenenbaum, {Joshua B.} and {de Melo}, {Celso Miguel} and Krishna, Madhava and Paull, Liam and Shkurti, Florian and Torralba, Antonio},
+  title     = {ConceptFusion: Open-set Multimodal 3D Mapping},
+  journal   = {Robotics: Science and Systems (RSS)},
+  year      = {2023},
+}</code></pre> -->
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./assets/pdf/2023-ConceptFusion.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/concept-fusion" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website adapted from the Nerfies templates, which is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a href="https://github.com/concept-fusion/concept-fusion.github.io">source code</a> of this website,
+            we just ask that you link back to the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies source code</a> in the footer.
+            Please remember to remove the analytics code included in the header of the website which you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
