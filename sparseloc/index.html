@@ -191,7 +191,7 @@
         The system achieves sparsity by augmenting metric maps with semantic features exploiting vision-language foundation models.
         This follows the idea of keeping a sufficient number of informative points that can be used for downstream tasks of localization and navigation.
         <span class="dnerf">SparseLoc</span> uses a Monte Carlo localization scheme using the same semantic features for data association.
-        The system is primarily evaluated on the KITTI dataset and achieves an average error of 5m and 2&deg; in localization.
+        The system is primarily evaluated on the KITTI dataset and achieves an average error of 5m and 2&deg; in localization while using &lt;1% of the dense map.
 
       </h2>
     </div>
@@ -403,9 +403,9 @@
             working effectively across multiple KITTI sequences without any changes.
           </p>
           <p>
-            The inherent sparsity of our landmark-based mapping and localization approach introduces a challenge that as some landmarks appear with
-            high frequency—such as trees, dominate over others. This uneven distribution leads to perceptual aliasing, continuously challenging the particle filter.
-            Despite these challenges, our framework impressive localization accuracy by exploiting the multimodal hypothesis capabilities of particle filtering.
+            The inherent sparsity of our landmark-based mapping and localization approach introduces a challenge that some landmarks appear with
+            high frequency, such as trees, dominate over others. This uneven distribution leads to perceptual aliasing, continuously challenging the particle filter.
+            Despite these challenges, our framework shows impressive localization accuracy by exploiting the multimodal hypothesis capabilities of particle filter.
           </p>
         </div>
         <div class="content has-text-centered">
