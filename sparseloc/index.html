@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Sparse Topometric Localization at city-scale">
+  <meta name="keywords" content="Global Localization, Autonomous Driving">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SparseLoc</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/buttons.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SparseLoc: Sparse Open-Set <br>Landmark-based Global Localization
+            <br>for Autonomous Navigation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://tinyurl.com/pranjalpaul">Pranjal Paul</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://flightvin.github.io/">Vineeth Bhat</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://tejasps28.github.io/">Tejas Salian</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://mohdomama.github.io/">Mohammad Omama</a><sup>2</sup>,</span><br>
+            <span class="author-block">
+              <a href="https://krrish94.github.io/">Krishna Murthy Jatavallabhula</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.in/citations?hl=en&user=fIrC4n8AAAAJ&view_op=list_works&sortby=pubdate">Naveen Arulselvan</a><sup>4</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.in/citations?user=QDuPGHwAAAAJ&hl=en">K. Madhava Krishna</a><sup>1</sup></span>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>IIIT Hyderabad,</span>
+            <span class="author-block"><sup>2</sup>University of Texas, Austin</span>
+            <span class="author-block"><sup>3</sup>FAIR, Meta</span>
+            <span class="author-block"><sup>4</sup>Ati Motors</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <img src="./static/images/colab.png" alt="Project Logo" style="max-width: 350px;">
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark is-disabled">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/Up8mKxx43Ow"
+                   class="external-link button is-normal is-rounded is-dark is-toggle">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <!-- <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-widescreen">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">SparseLoc</span> aims to localize in a city-scale environment using sparse maps.
+        The system achieves sparsity by augmenting metric maps with semantic features exploiting vision-language foundation models.
+        This follows the idea of keeping a sufficient number of informative points that can be used for downstream tasks of localization and navigation.
+        <span class="dnerf">SparseLoc</span> uses a Monte Carlo localization scheme using the same semantic features for data association.
+        The system is primarily evaluated on the KITTI dataset and achieves an average error of 5m and 2&deg; in localization.
+
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- Will do it later -->
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="dnerf">SparseLoc</span> is a global localization framework for city-scale scenarios that leverages vision-language foundation models to generate sparse semantic topometric maps in a zero-shot manner. It combines this map representation with a Monte Carlo localization scheme enhanced by a novel <i>late optimization</i> strategy, ensuring improved pose estimation.
+          </p>
+          <p>
+            By constructing compact yet highly discriminative maps and refining localization through a carefully designed optimization schedule, <span class="dnerf">SparseLoc</span> overcomes
+            the limitations of existing topometric localization methods, offering a better solution for global localization at the scale of a city.
+            Our system achieves over a 5&times; improvement in localization accuracy compared to existing sparse mapping techniques.
+            Despite utilizing only 1/500<sup>th</sup> of the points of dense mapping methods, it achieves comparable performance, maintaining an average global localization error below 5m and 2&deg; on KITTI Sequences.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/Up8mKxx43Ow?si=s-ilh6W63gh8Tm6_"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3 has-text-centered">Global Run</h2>
+          <p class="has-text-justified">
+            Global localization with <span class="dnerf">SparseLoc</span> demonstrates robust performance,
+            maintaining consistent position tracking throughout the city-level map.
+            Unlike other sparse localization techniques that often struggle with perceptual aliasing and frequently lose track,
+            our approach could rapidly resolve ambiguities and maintain localization integrity
+            across the entire trajectory which is a critical capability for reliable autonomous navigation in urban environments.
+          </p>
+          <video id="dollyzoom" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/global-converge.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3 has-text-centered">Visualizing Correspondances</h2>
+        <!-- Image added below the heading -->
+        <img src="./static/images/reference.jpg" alt="Correspondance visualization" class="image">
+        <div class="columns is-centered">
+          <div class="column content">
+            <p class="has-text-justified" style="margin-top: 1rem;">
+              <span class="dnerf">SparseLoc</span> localizes by associating detected landmarks with map points where the map points are augmented with foundational features.
+              During localization, for each particle, the system extracts candidate landmarks from the map based on similarity scores and matches them with the detected landmarks. <br>
+              The image below shows candidate landmarks extracted from the map for several particles, represented as <font color="red">red spheres</font>, along with connecting lines for correspondences.
+              The best matches are highlighted as <font color="green">green spheres</font>.
+            </p>
+            <video id="matting-video" autoplay muted loop playsinline height="100%">
+              <source src="./static/videos/correspondance.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Global (Re-)Localization</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="dnerf">SparseLoc</span> can recover localization from any kidnapped scenario
+        while maintaining stability after particle filter convergence. Figure shows <i>SparseLoc</i> localization performance
+        on KITTI Sequence 00 and 05. Since our localization framework uses Particle Filter, it can localize and relocalize after travelling a few meters.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="new-section-video" autoplay muted loop playsinline height="100%">
+              <source src="./static/videos/kidnap.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-3">Visualizing Convergence</h3>
+        <div class="content has-text-justified">
+          <p>
+            The visualization begins with randomly distributed particles <font color="red">(red coordinate axes)</font> scattered across the map.
+            As the ego-vehicle <font color="green">(green car)</font> starts to move, <span class="dnerf">SparseLocs'</span> observation likelihood starts to refine the particle distribution
+            based on matching correspondances of detected landmarks with map points. <br><br>
+
+            Watch how quickly the particles converge toward the actual position, with the <font color="red">red car</font> representing our system's estimated pose.
+            This demonstrates <span class="dnerf">SparseLoc's</span> ability to efficiently narrow down location hypotheses using minimal semantic cues in a heavily sparse map, ultimately achieving reliable global localization.
+            <br><br>
+            <b>Use the slider to visualize the particle filter's convergence process on KITTI Sequence 00.</b>
+          </p>
+        </div>
+        <div class="columns is-vcentered is-centered interpolation-panel">
+          <div class="column is-12 interpolation-video-column">
+            <div id="interpolation-image-wrapper" style="max-height: 800px; overflow: hidden;">
+              Loading...
+            </div>
+            <input class="slider is-medium is-info"
+                  id="interpolation-slider"
+                  step="1" min="0" max="29" value="0" type="range">
+            <div class="slider-hint"></div>
+          </div>
+        </div>
+        <!--/ Interpolating. -->
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4" style="margin-top: 2rem;">Language-Landmark Database</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our framework taps into the capabilities of Open-World Perception models for localization through intuitive,
+            zero-shot prompting to identify landmarks static to the scene. We use Llama-3.2-Vision to generate the language-landmark database.
+            The VLM showed impressive semantic understanding by automatically creating
+            a landmark database, shown in the image below, that proved to be both sufficient and distinctive,
+            working effectively across multiple KITTI sequences without any changes.
+          </p>
+          <p>
+            The inherent sparsity of our landmark-based mapping and localization approach introduces a challenge that as some landmarks appear with
+            high frequency—such as trees, dominate over others. This uneven distribution leads to perceptual aliasing, continuously challenging the particle filter.
+            Despite these challenges, our framework impressive localization accuracy by exploiting the multimodal hypothesis capabilities of particle filtering.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img id="replay-gif"
+               src="./static/gifs/querying-lvlm.gif"
+               alt="Creating Language-Landmark Database by querying Large Vision-Language Model"
+               width="100%">
+        </div>
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to the <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies source code</a> in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

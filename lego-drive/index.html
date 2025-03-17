@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description"
         content="LeGo-Drive">
-  <meta name="keywords" content="End-to-End Motion Planning, Differentiable Planner, Language-Guided Navigation, Closed-Loop, Multimodal, Foundation models, CLIP">
+  <meta name="keywords" content="ConceptFusion, 3D Mapping, SLAM, Open-set, Multimodal, Foundation models, CLIP">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LeGo-Drive</title>
 
@@ -86,15 +86,15 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">LeGo-Drive<br> Language-enhanced Goal-oriented <br> Closed-Loop End-to-End Autonomous Driving</h1>
+          <h1 class="title is-2 publication-title">LeGo-Drive: Language-enhanced Goal-oriented <br> Closed-Loop End-to-End Autonomous Driving</h1>
           <!-- <h2 class="title is-6 publlication-title">Robotics: Science and Systems (RSS) 2023</h2> -->
           <div class="is-size-6 publication-authors">
             <span class="author-block">
-              <a href="https://tinyurl.com/pranjalpaul">Pranjal Paul</a><sup>1</sup><sup>*</sup>,</span>
+              <a href="https://tinyurl.com/pranjalpaul">Pranjal Paul</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://github.com/anantagrg">Anant Garg</a><sup>1</sup><sup>*</sup><sup>&#8224;</sup>,</span>
+              <a href="https://github.com/anantagrg">Anant Garg</a><sup>1</sup><sup>*</sup>,</span>
             <span class="author-block">
-              <a href="https://tusharc31.github.io/">Tushar Choudhary</a><sup>1</sup>,</span>
+              <a href="https://tusharc31.github.io/">Tushar Choudhary</a><sup>1</sup><sup>*</sup>,</span>
             <span class="author-block">
               <a href="https://scholar.google.co.in/citations?user=0zgDoIEAAAAJ&hl=en">Arun Kumar Singh</a><sup>2</sup>,</span>
             <span class="author-block">
@@ -108,37 +108,29 @@
           </div>
 
           <div class="is-size-7 publication-authors">
-            <span class="author-block"><sup>*</sup>Co-first authors</span>
-            <span class="author-block"><sup>&#8224;</sup>Work done prior to current affiliation</span>
+            <span class="author-block"><sup>*</sup>Co-second authors</span>
+            <!-- <span class="author-block"><sup>&#8224;</sup>Work done prior to current affiliation</span> -->
           </div>
-          <br>
-          <div class=""is-size-3 publication-venue">
-            <span class="venue-block"><span class="publication-awards">Accepted at IROS 2024</span><br>
-            <span class="venue-block">Abu Dhabi, UAE</span> <br><br>
-          </div>
-          <div class=""is-size-7 publication-venue">
-            <span class="venue-block"><span class="publication-awards">Oral Talk at RSS Workshop on Semantics for Robotics 2024</span><br>
-            <!-- <span class="venue-block">Abu Dhabi, UAE</span> <br> -->
-          </div>
+
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10801870"
+              <!-- <span class="link-block">
+                <a href="assets/pdf/2023-ConceptFusion.pdf"
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2403.20116"
                    class="external-link button is-normal ">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>ArXiv</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <!-- Video Link. -->
@@ -151,7 +143,16 @@
                   <span>1-min Demo</span>
                 </a>
               </span>
-
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/reachpranjal/lego-drive"
+                   class="external-link button is-normal ">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>GitHub</span>
+                  </a>
+              </span>
               <!-- Dataset Link. -->
               <span class="link-block">
                 <a href="https://twitter.com/reachpranjal/status/1774753294277378094"
@@ -162,19 +163,8 @@
                   <span>TL;DR</span>
                   </a>
               </span>
-
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal" disabled="true">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-
             </div>
+
           </div>
         </div>
       </div>
@@ -210,19 +200,8 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Existing Vision-Language Models (VLMs) produce long-term trajectory waypoints or
-            directly control actions based on their perception input and language prompt.
-            However, these VLMs are not explicitly aware of the constraints imposed by the scene or kinematics of the vehicle. As a result, the generated trajectories or control inputs are likely to be unsafe and/or infeasible.
-            In this paper, we introduce LeGo-Drive, which aims to address these issues.
-            Our key idea is to use the VLM to just predict a goal location based on the given language command and perception input,
-            which is then fed to a downstream differentiable trajectory optimizer with learnable components.
-            We train the VLM and the trajectory optimizer in an end-to-end fashion using a loss function that captures the ego-vehicle's
-            ability to reach the predicted goal while satisfying safety and kinematic constraints.
-            The gradients during the back-propagation flow through the optimization layer and make the VLM aware of the planner’s capabilities,
-            making more feasible goal predictions. We compare our end-to-end approach with a decoupled framework where the planner is
-            just used at the inference time to drive to the VLM-predicted goal location and report a goal reaching Success Rate of 81%.
-            We demonstrate the versatility of LeGo-Drive across various driving scenarios and navigation commands,
-            highlighting its potential for practical deployment in autonomous vehicles.
+            Existing Vision-Language models (VLMs) estimate either long-term trajectory waypoints or a set of control actions as a reactive solution for closed-loop planning based on their rich scene comprehension. However, these estimations are coarse and are subjective to their "world understanding" which may generate sub-optimal decisions due to perception errors.
+            In this paper, we introduce <i>LeGo-Drive</i>, which aims to address this issue by estimating a goal location based on the given language command as an intermediate representation in an end-to-end setting. The estimated goal might fall in a non-desirable region, like on top of a car for a parking-like command, leading to inadequate planning. Hence, we propose to train the architecture in an end-to-end manner, resulting in iterative refinement of both the goal and the trajectory collectively. We validate the effectiveness of our method through comprehensive experiments conducted in diverse simulated environments. We report significant improvements in standard autonomous driving metrics, with a goal reaching Success Rate of 81%. We further showcase the versatility of <i>LeGo-Drive</i> across different driving scenarios and linguistic inputs, underscoring its potential for practical deployment in autonomous vehicles and intelligent transportation systems.
           </p>
         </div>
       </div>
@@ -520,14 +499,12 @@
   year      = {2023},
 }</code></pre> -->
 <pre><code>
-  @inproceedings{paul2024lego,
-    title={LeGo-Drive: Language-enhanced Goal-oriented Closed-Loop End-to-End Autonomous Driving},
-    author={Paul, Pranjal and Garg, Anant and Choudhary, Tushar and Singh, Arun Kumar and Krishna, K Madhava},
-    booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-    pages={10020--10026},
-    year={2024},
-    organization={IEEE}
-  }
+  @article{paul2024lego,
+  title={LeGo-Drive: Language-enhanced Goal-oriented Closed-Loop End-to-End Autonomous Driving},
+  author={Paul, Pranjal and Garg, Anant and Choudhary, Tushar and Singh, Arun Kumar and Krishna, K Madhava},
+  journal={arXiv preprint arXiv:2403.20116},
+  year={2024}
+}
 </code>
 </pre>
   </div>
@@ -537,13 +514,13 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
+      <!-- <a class="icon-link"
          href="./assets/pdf/2023-ConceptFusion.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/concept-fusion" class="external-link" disabled>
         <i class="fab fa-github"></i>
-      </a>
+      </a> -->
       <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
         <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
       </a>
