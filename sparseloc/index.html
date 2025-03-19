@@ -15,7 +15,21 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-1GQDEHC146');
+    gtag('config', 'G-1GQDEHC146', {
+      'debug_mode': true,
+      'page_title': 'SparseLoc Homepage',
+      'page_location': window.location.href,
+      'send_page_view': true
+    });
+
+    // Track user engagement
+    // Send an event when users stay on the page for at least 10 seconds
+    setTimeout(function() {
+      gtag('event', 'engagement', {
+        'event_category': 'user_engagement',
+        'event_label': 'engaged_visitor'
+      });
+    }, 10000);
   </script>
 
 
