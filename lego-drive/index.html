@@ -217,7 +217,7 @@
             This is then, fed to the optimization-based downstream planner which estimates the optimization parameters of the trajectory. Further, both the modules are jointly trained by backpropagating the perception and planner loss in an end-to-end manner.
           </p>
           <div style="text-align: center;">
-            <img src="./static/images/pipeline.gif" width="1000"/>
+            <video autoplay loop muted playsinline preload="metadata" poster="./static/images/pipeline.jpg" style="max-width:100%;height:auto;width:1000px"><source src="./static/images/pipeline.mp4" type="video/mp4"></video>
           </div>
         </div>
         <br/>
@@ -231,7 +231,7 @@
         <div class="content">
           <h2 class="title is-4">Case: Park-In</h2>
           <div class="interpolation-image-wrapper-zero-shot">
-            <img src="./static/images/park-in-new-goal.gif" />
+            <video autoplay loop muted playsinline preload="metadata" poster="./static/images/park-in-new-goal.jpg" style="max-width:100%;height:auto"><source src="./static/images/park-in-new-goal.mp4" type="video/mp4"></video>
           </div>
           <p style="text-align: justify;">
             For navigation command like <b><i>"Park behind the bike on the front right"</i></b>, the initial prediction of goal (in <font color="#03c04a">Green</font>) from the perception module falls at a non-navigable location, i.e. on the curb edge.
@@ -246,7 +246,7 @@
         <div class="content">
           <h2 class="title is-4">Park-Out</h2>
           <div class="interpolation-image-wrapper-zero-shot">
-            <img src="./static/images/park-out-new-goal.gif" />
+            <video autoplay loop muted playsinline preload="metadata" poster="./static/images/park-out-new-goal.jpg" style="max-width:100%;height:auto"><source src="./static/images/park-out-new-goal.mp4" type="video/mp4"></video>
           </div>
           <p style="text-align: justify;"">
             The initial goal generated (in <font color="#03c04a">Green</font>) for input prompt <b><i>"Park out while keeping a safe distance from the parked bike,"</i></b>  might not ensure a safe trajectory, potentially leading to collisions in the initial motion.
@@ -262,7 +262,7 @@
         <h2 class="title is-4">Case: Compound Command</h2>
         <div class="content has-text-justified">
           <div style="float: left; margin-right: 20px;">
-            <img src="./static/images/compound.gif" />
+            <video autoplay loop muted playsinline preload="metadata" poster="./static/images/compound.jpg" style="max-width:100%;height:auto"><source src="./static/images/compound.mp4" type="video/mp4"></video>
           </div>
           <p>
             The efficacy of the proposed approach can be best seen for intricate case where a long-term motion is involved.
@@ -283,7 +283,7 @@
             <div class="column is-full-width">
               <div class="content has-text-justified">
                 <div style="text-align: center;">
-                  <img src="./static/images/vqa.gif" width="700"/>
+                  <video autoplay loop muted playsinline preload="metadata" poster="./static/images/vqa.jpg" style="max-width:100%;height:auto;width:700px"><source src="./static/images/vqa.mp4" type="video/mp4"></video>
                 </div>
                 <p>
                   For extended functionality of generating high-level driving instructions catered to the current scene, we employ GPT-4V and provide it with the front camera image and an engineered prompt where we explain the driving setting and available actions.
